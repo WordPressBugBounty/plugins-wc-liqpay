@@ -2,9 +2,9 @@
 Contributors: Komanda
 Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
-Tested up to: 6.5
+Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.10
+Stable tag: 1.11
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -67,6 +67,18 @@ Added filter "wc_liqpay_request_filter" to query array before sending data to li
 Bugs fixed:
 removed admin css/js plugins files
 fixed duplicated origin column value
+= 1.11 =
+Tested wordpress 6.7.1
+Сode refactoring
+Add 'rro_info'
+Bugs fixed:
+link to thank you page after successful payment
+the order status after successful payment
+localisation and translations
+
+
+
+
 
 
 == Upgrade Notice ==
@@ -87,6 +99,10 @@ Tested wordpress 6.5
 Added filter to query array
 = 1.10 =
 Small bugs fixed
+= 1.11 =
+Сode refactoring
+Add 'rro_info'
+Bugs fixed
 
 
 
