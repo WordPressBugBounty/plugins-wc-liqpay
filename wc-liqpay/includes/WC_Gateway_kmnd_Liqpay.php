@@ -133,7 +133,7 @@ class WC_Gateway_kmnd_Liqpay extends WC_Payment_Gateway {
         //Add order items to rro_info
         $rro_info = array(
             'items' => array(),
-             'delivery_emails' => $order->get_billing_email(),
+            'delivery_emails' => array($order->get_billing_email())
         );
 
         foreach ($order->get_items() as $item_id => $item) {
