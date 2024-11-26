@@ -4,7 +4,7 @@ Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.11
+Stable tag: 1.12
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -75,6 +75,10 @@ Bugs fixed:
 link to thank you page after successful payment
 the order status after successful payment
 localisation and translations
+= 1.12 =
+Bugs fixed:
+Removing quotes in 'rro_info' array for 'price' and 'cost' values
+
 
 
 
@@ -103,6 +107,9 @@ Small bugs fixed
 Сode refactoring
 Add 'rro_info'
 Bugs fixed
+= 1.12 =
+Bugs fixed:
+Removing quotes in 'rro_info' array for 'price' and 'cost' values
 
 
 

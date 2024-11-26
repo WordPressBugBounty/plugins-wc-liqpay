@@ -141,8 +141,8 @@ class WC_Gateway_kmnd_Liqpay extends WC_Payment_Gateway {
 
             $rro_info['items'][] = array(
                 'amount' => $item->get_quantity(),
-                'price' => $product->get_price(),
-                'cost' => $item->get_total(),
+                'price' => (float)$product->get_price(),
+                'cost' => (float)$item->get_total(),
                 'id' => $product->get_id(),
             );
         }
