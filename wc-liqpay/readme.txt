@@ -4,7 +4,7 @@ Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
 Tested up to: 6.7.1
 Requires PHP: 7.4
-Stable tag: 1.13
+Stable tag: 1.14
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -80,8 +80,8 @@ Bugs fixed:
 Removing quotes in 'rro_info' array for 'price' and 'cost' values
 = 1.13 =
 'rro_info' string 'email' to array
-
-
+= 1.14 =
+Add metabox 'rro_id'
 
 
 
