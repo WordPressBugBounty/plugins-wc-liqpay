@@ -251,15 +251,17 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			if ( ! $product ) {
 				continue;
 			}
-			$product_rro_id = get_post_meta( $product->get_id(), 'product_rro_id', true );
 
 			if ( $enabled_rro ) {
-				$rro_info['items'][] = array(
-					'amount' => $item->get_quantity(),
-					'price'  => (float) $product->get_price(),
-					'cost'   => (float) $item->get_total(),
-					'id'     => (string) $product_rro_id,
-				);
+				$product_rro_id = get_post_meta( $product->get_id(), 'product_rro_id', true );
+				if( $product_rro_id ){
+					$rro_info['items'][] = array(
+						'amount' => $item->get_quantity(),
+						'price'  => (float) $product->get_price(),
+						'cost'   => (float) $item->get_total(),
+						'id'     => (string) $product_rro_id,
+					);
+				}
 			}
 		}
 
@@ -315,12 +317,13 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			error_log( "Incoming SERVER data:\n" . print_r( $_SERVER, true ) );
 		}
 		// Get data and signature from LiqPay's callback.
-		$data      = isset( $_POST['data'] ) ? filter_input( INPUT_POST, wp_unslash( $_POST['data'] ) ) : null;
-		$signature = isset( $_POST['signature'] ) ? filter_input( INPUT_POST, wp_unslash( $_POST['signature'] ) ) : null;
+		$data      = isset( $_POST['data'] ) ? $_POST['data'] : null;
+		$signature = isset( $_POST['signature'] ) ? $_POST['signature'] : null;
 		// phpcs:enable
 
 		if ( ! $data || ! $signature ) {
 			// Missing data or signature.
+			error_log( "Missing data or signature" . print_r( ['data' => $data,'signature' => $signature], true ) );
 			wp_die( 'Invalid data received', 'LiqPay Callback', array( 'response' => 400 ) );
 		}
 
@@ -333,7 +336,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			error_log( "Incoming decoded_data:\n" . print_r( $decoded_data, true ) );
 		}
 		// Verify the signature.
-		$generated_signature = $liqpay->str_to_sign( $this->private_key . $data . $this->private_key );
+		$generated_signature = $liqpay->str_to_sign( $this->get_option( 'private_key' ) . $data . $this->get_option( 'private_key' ) );
 		if ( $signature !== $generated_signature ) {
 			wp_die( 'Signature verification failed', 'LiqPay Callback', array( 'response' => 400 ) );
 		}
