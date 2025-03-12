@@ -4,7 +4,7 @@
  * Plugin Name: Payment Gateway for LiqPay for Woocommerce
  * Plugin URI:
  * Description: Plugin for paying for products through the LiqPay service. Works in conjunction with the Woocommerce plugin
- * Version: 2.3
+ * Version: 2.4
  * Requires at least: 5.7.2
  * Requires PHP: 7.4
  * Author: komanda.dev

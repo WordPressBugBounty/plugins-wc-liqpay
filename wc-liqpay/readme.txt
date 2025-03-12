@@ -4,7 +4,7 @@ Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
 Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 2.3
+Stable tag: 2.4
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -13,6 +13,23 @@ Plugin for paying for products through the LiqPay service. Works in conjunction 
 == Description ==
 
 Payment for products of online stores (Woocommerce) through the LiqPay service. Works in conjunction with the Woocommerce plugin.
+
+
+== Features ==
+- Payment for any type of products
+- Support for block themes
+- Support for PPO (Fiscal Receipt Printing)
+- Debugging in standard WooCommerce logs
+- Configuration options:
+  - Payment method name
+  - Payment method description
+  - Payment method icon
+  - Language of LiqPay payment pages
+  - Order status after payment
+  - Payment destination
+  - Redirect page in case of payment failure
+  - Enable/disable PPO
+  - Enable/disable WooCommerce debug log
 
 Now you can use the filter:
 ```
