@@ -4,7 +4,7 @@
  * Plugin Name: Payment Gateway for LiqPay for Woocommerce
  * Plugin URI:
  * Description: Plugin for paying for products through the LiqPay service. Works in conjunction with the Woocommerce plugin
- * Version: 2.2
+ * Version: 2.3
  * Requires at least: 5.7.2
  * Requires PHP: 7.4
  * Author: komanda.dev
@@ -84,4 +84,21 @@ function add_liqpay_gateway_class( $gateways ) {
  */
 function load_liqpay_mu_textdomain() {
 	load_muplugin_textdomain( 'wcliqpay', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'liqpay_add_settings_link' );
+
+/**
+ * Create settings link
+ *
+ * @param array $links - Links.
+ * @return array
+ */
+function liqpay_add_settings_link( $links ) {
+	$payment_method_id = 'liqpay';
+	$settings_url      = admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . $payment_method_id );
+	$settings_link     = '<a href="' . esc_url( $settings_url ) . '">' . __( 'Settings', 'wcliqpay' ) . '</a>';
+	array_unshift( $links, $settings_link );
+	return $links;
 }

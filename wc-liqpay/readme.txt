@@ -2,9 +2,9 @@
 Contributors: Komanda
 Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
-Tested up to: 6.7.1
+Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -89,9 +89,9 @@ Fixed translation errors and text repetition
 Enabled logs in debug mode
 Fixed wpcs validation
 Fixed the plugin's incompatibility with the current version of WooCommerce 9 (block theme support)
-
-
-
+= 2.3 =
+Added quick navigation to settings
+Added logging to WooCommerce logs
 
 
 == Upgrade Notice ==
@@ -128,6 +128,9 @@ Fixed translation errors and text repetition
 Enabled logs in debug mode
 Fixed wpcs validation
 Fixed the plugin's incompatibility with the current version of WooCommerce 9 (block theme support)
+= 2.3 =
+Added quick navigation to settings
+Added logging to WooCommerce logs
 
 
 == Translations ==

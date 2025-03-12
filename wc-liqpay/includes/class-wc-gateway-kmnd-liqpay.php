@@ -221,6 +221,16 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 				),
 				'default'     => 'yes',
 			),
+			'debug'               => array(
+				'title'       => __( 'Enable/Disable debug mode', 'wcliqpay' ),
+				'type'        => 'checkbox',
+				'default'     => 'yes',
+				'description' => sprintf(
+					/* translators: %s - Link to WooCommerce logs page */
+					__( 'Open WooCommerce logs page: %s', 'wcliqpay' ),
+					'<a href="' . admin_url( 'admin.php?page=wc-status&tab=logs' ) . '">' . __( 'Go to logs', 'wcliqpay'  ) . '</a>'
+				),
+			),
 		);
 	}
 
@@ -254,7 +264,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 
 			if ( $enabled_rro ) {
 				$product_rro_id = get_post_meta( $product->get_id(), 'product_rro_id', true );
-				if( $product_rro_id ){
+				if ( $product_rro_id ) {
 					$rro_info['items'][] = array(
 						'amount' => $item->get_quantity(),
 						'price'  => (float) $product->get_price(),
@@ -293,9 +303,8 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		// Filter "wc_liqpay_request_filter" to query array before sending data to liqpay.
 		$params = apply_filters( 'wc_liqpay_request_filter', $params );
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:disable
-			error_log( "Init data:\n" . print_r( $params, true ) );
+		if ( 'yes' === $this->get_option( 'debug' ) ) {
+			$this->print_debug_data( 'LIQPAY: Init data:', $params );
 		}
 		// Generate the LiqPay payment link.
 		$payment_link = $liqpay->cnb_link( $params );
@@ -311,11 +320,10 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 	 * Handle callback from LiqPay to update the order status.
 	 */
 	public function handle_callback() {
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:disable
-			error_log( "Incoming POST data:\n" . print_r( $_POST, true ) );
-			error_log( "Incoming SERVER data:\n" . print_r( $_SERVER, true ) );
+		if ( 'yes' === $this->get_option( 'debug' ) ) {
+			$this->print_debug_data( 'LIQPAY: handle_callback -- _POST data:', $_POST );
 		}
+		// phpcs:disable
 		// Get data and signature from LiqPay's callback.
 		$data      = isset( $_POST['data'] ) ? $_POST['data'] : null;
 		$signature = isset( $_POST['signature'] ) ? $_POST['signature'] : null;
@@ -323,7 +331,13 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 
 		if ( ! $data || ! $signature ) {
 			// Missing data or signature.
-			error_log( "Missing data or signature" . print_r( ['data' => $data,'signature' => $signature], true ) );
+			$this->print_debug_data(
+				'LIQPAY: handle_callback -- Missing data or signature:',
+				array(
+					'data'      => $data,
+					'signature' => $signature,
+				)
+			);
 			wp_die( 'Invalid data received', 'LiqPay Callback', array( 'response' => 400 ) );
 		}
 
@@ -331,13 +345,21 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		$liqpay       = new LiqPay( $this->get_option( 'public_key' ), $this->get_option( 'private_key' ) );
 		$decoded_data = json_decode( base64_decode( $data ), true );
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:ignore
-			error_log( "Incoming decoded_data:\n" . print_r( $decoded_data, true ) );
+		if ( 'yes' === $this->get_option( 'debug' ) ) {
+			$this->print_debug_data( 'LIQPAY: handle_callback -- Incoming decoded_data:', $decoded_data );
 		}
 		// Verify the signature.
 		$generated_signature = $liqpay->str_to_sign( $this->get_option( 'private_key' ) . $data . $this->get_option( 'private_key' ) );
 		if ( $signature !== $generated_signature ) {
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_callback -- Signature verification failed:',
+					array(
+						'data'      => $data,
+						'signature' => $signature,
+					)
+				);
+			}
 			wp_die( 'Signature verification failed', 'LiqPay Callback', array( 'response' => 400 ) );
 		}
 
@@ -346,12 +368,29 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		$status   = isset( $decoded_data['status'] ) ? $decoded_data['status'] : null;
 
 		if ( ! $order_id || ! $status ) {
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_callback -- Missing order ID or status:',
+					array(
+						'$status'   => $status,
+						'$order_id' => $order_id,
+					)
+				);
+			}
 			wp_die( 'Missing order ID or status', 'LiqPay Callback', array( 'response' => 400 ) );
 		}
 
 		// Retrieve the order using the order ID.
 		$order = wc_get_order( $order_id );
 		if ( ! $order ) {
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_callback -- order not found:',
+					array(
+						'$order_id' => $order_id,
+					)
+				);
+			}
 			wp_die( 'Order not found', 'LiqPay Callback', array( 'response' => 404 ) );
 		}
 
@@ -360,6 +399,14 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			// Mark the order as "processing" or "completed" based on your workflow.
 			$order->update_status( $this->get_option( 'status' ), __( 'Payment successful via LiqPay.', 'wcliqpay' ) );
 			$order->payment_complete();
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_callback -- Payment successful via LiqPay.',
+					array(
+						'$status' => $status,
+					)
+				);
+			}
 		} elseif ( 'reversed' === $status ) {
 			wc_create_refund(
 				array(
@@ -370,9 +417,25 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 				)
 			);
 			$order->update_status( 'refunded', __( 'Payment refunded via Liqpay', 'wcliqpay' ) );
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_callback -- Payment refunded via LiqPay.',
+					array(
+						'$status' => $status,
+					)
+				);
+			}
 		} else {
 			// If the status is not successful, mark the order as failed.
 			$order->update_status( 'failed', __( 'Payment failed via LiqPay.', 'wcliqpay' ) );
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_callback -- Payment failed via LiqPay.',
+					array(
+						'$status' => $status,
+					)
+				);
+			}
 		}
 
 		// Send a 200 response back to LiqPay to acknowledge receipt.
@@ -386,6 +449,16 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 	 * @return void
 	 */
 	public function handle_return() {
+
+		if ( 'yes' === $this->get_option( 'debug' ) ) {
+			$this->print_debug_data(
+				'LIQPAY: handle_return -- _GET data.',
+				array(
+					'$_GET' => $_GET,
+				)
+			);
+		}
+
 		//phpcs:disable
 		if ( ! isset( $_GET['order_id'] ) ) {
 			wp_redirect( home_url() );
@@ -396,6 +469,14 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		$order    = wc_get_order( $order_id );
 		//phpcs:enable
 		if ( ! $order ) {
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_return -- Order not found.',
+					array(
+						'$order_id' => $order_id,
+					)
+				);
+			}
 			wp_safe_redirect( home_url() );
 			exit;
 		}
@@ -404,6 +485,14 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		$result = $this->check_order_status( $order_id );
 
 		if ( is_wp_error( $result ) ) {
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: handle_return -- Payment verification failed.',
+					array(
+						'$result' => $result,
+					)
+				);
+			}
 			// Payment failed or error occurred.
 			wc_add_notice( __( 'Payment verification failed. Please contact us for assistance.', 'wcliqpay' ), 'error' );
 			$redirect_url = $this->get_option( 'redirect_page_error' ) ? $this->get_option( 'redirect_page_error' ) : wc_get_cart_url();
@@ -411,6 +500,14 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			exit;
 		}
 
+		if ( 'yes' === $this->get_option( 'debug' ) ) {
+			$this->print_debug_data(
+				'LIQPAY: handle_return -- Payment was successful, redirect to received page.',
+				array(
+					'$redirect_url' => $this->get_return_url( $order ),
+				)
+			);
+		}
 		// Payment was successful, redirect to received page.
 		wp_safe_redirect( $this->get_return_url( $order ) );
 		exit;
@@ -461,5 +558,22 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		} catch ( Exception $e ) {
 			return new WP_Error( 'api_exception', 'Exception occurred: ' . $e->getMessage() );
 		}
+	}
+
+
+	/**
+	 * Print debug log info
+	 *
+	 * @param string $title
+	 * @param array  $data
+	 * @return void
+	 */
+	function print_debug_data( $title, $data ) {
+		if ( class_exists( 'WC_Logger' ) && function_exists( 'wc_get_logger' ) ) {
+			$logger = wc_get_logger();
+			$logger->info( $title, $data );
+			return true;
+		}
+		return false;
 	}
 }
