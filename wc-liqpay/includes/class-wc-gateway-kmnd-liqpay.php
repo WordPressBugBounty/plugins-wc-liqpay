@@ -228,7 +228,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 				'description' => sprintf(
 					/* translators: %s - Link to WooCommerce logs page */
 					__( 'Open WooCommerce logs page: %s', 'wcliqpay' ),
-					'<a href="' . admin_url( 'admin.php?page=wc-status&tab=logs' ) . '">' . __( 'Go to logs', 'wcliqpay'  ) . '</a>'
+					'<a href="' . admin_url( 'admin.php?page=wc-status&tab=logs' ) . '">' . __( 'Go to logs', 'wcliqpay' ) . '</a>'
 				),
 			),
 		);
@@ -263,15 +263,21 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			}
 
 			if ( $enabled_rro ) {
-				$product_rro_id = get_post_meta( $product->get_id(), 'product_rro_id', true );
-				if ( $product_rro_id ) {
-					$rro_info['items'][] = array(
-						'amount' => $item->get_quantity(),
-						'price'  => (float) $product->get_price(),
-						'cost'   => (float) $item->get_total(),
-						'id'     => (string) $product_rro_id,
-					);
+				$product_rro_id_meta = get_post_meta( $product->get_id(), 'product_rro_id', true );
+
+				if ( $product_rro_id_meta ) {
+					$rro_product_id = $product_rro_id_meta;
+				} else {
+					$rro_product_id = $product->get_id();
 				}
+
+				$rro_info['items'][] = array(
+					'amount' => $item->get_quantity(),
+					'price'  => (float) $product->get_price(),
+					'cost'   => (float) $item->get_total(),
+					'id'     => (string) $rro_product_id,
+				);
+
 			}
 		}
 
