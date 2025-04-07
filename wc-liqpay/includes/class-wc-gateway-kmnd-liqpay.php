@@ -108,6 +108,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		wp_nonce_field( 'product_rro_id_meta_box_nonce', 'product_rro_id_meta_box_nonce' );
 		echo '<label for="product_rro_id">' . esc_html__( 'Liqpay product ID for RRO', 'wcliqpay' ) . '</label>';
 		echo '<input type="text" id="product_rro_id" name="product_rro_id" value="' . esc_attr( $product_rro_id ) . '" style="width: 100%;margin-top: 5px;" />';
+		echo '<small>' . sprintf( esc_html__( 'If left blank, the product ID will be used. - %s', 'wcliqpay' ), $post->ID ) . '</small>';
 	}
 
 	/**
@@ -307,7 +308,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		}
 
 		// Filter "wc_liqpay_request_filter" to query array before sending data to liqpay.
-		$params = apply_filters( 'wc_liqpay_request_filter', $params );
+		$params = apply_filters( 'wc_liqpay_request_filter', $params, $order);
 
 		if ( 'yes' === $this->get_option( 'debug' ) ) {
 			$this->print_debug_data( 'LIQPAY: Init data:', $params );

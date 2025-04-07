@@ -4,7 +4,7 @@ Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
 Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 2.5
+Stable tag: 2.6
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -109,7 +109,9 @@ Fixed the plugin's incompatibility with the current version of WooCommerce 9 (bl
 = 2.3 =
 Added quick navigation to settings
 Added logging to WooCommerce logs
-
+= 2.6 =
+Added order object to filter "wc_liqpay_request_filter"
+Added a short description of the RRO field
 
 == Upgrade Notice ==
 
@@ -148,6 +150,9 @@ Fixed the plugin's incompatibility with the current version of WooCommerce 9 (bl
 = 2.3 =
 Added quick navigation to settings
 Added logging to WooCommerce logs
+= 2.6 =
+Added order object to filter "wc_liqpay_request_filter"
+Added a short description of the RRO field
 
 
 == Translations ==

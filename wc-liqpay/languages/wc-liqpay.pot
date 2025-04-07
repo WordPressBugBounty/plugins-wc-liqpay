@@ -185,3 +185,6 @@ msgstr ""
 #: includes/WC_Gateway_kmnd_Liqpay.php:207
 msgid "URL page to go to after gateway LiqPay"
 msgstr ""
+
+msgid "If left blank, the product ID will be used. - %s"
+msgstr ""
