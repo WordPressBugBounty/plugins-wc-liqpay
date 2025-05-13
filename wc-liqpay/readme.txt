@@ -2,9 +2,9 @@
 Contributors: Komanda
 Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
-Tested up to: 6.7.2
+Tested up to: 6.8.1
 Requires PHP: 7.4
-Stable tag: 2.6
+Stable tag: 2.7
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -112,6 +112,8 @@ Added logging to WooCommerce logs
 = 2.6 =
 Added order object to filter "wc_liqpay_request_filter"
 Added a short description of the RRO field
+= 2.7 =
+Update Wordpress 6.8.1
 
 == Upgrade Notice ==
 
@@ -153,7 +155,8 @@ Added logging to WooCommerce logs
 = 2.6 =
 Added order object to filter "wc_liqpay_request_filter"
 Added a short description of the RRO field
-
+= 2.7 =
+Update Wordpress 6.8.1
 
 == Translations ==
 

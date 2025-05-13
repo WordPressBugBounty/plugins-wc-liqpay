@@ -530,6 +530,12 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		$order = wc_get_order( $order_id );
 
 		if ( ! $order ) {
+			$this->print_debug_data(
+				'LIQPAY: check_order_status -- Order not found.',
+				array(
+					'$order' => $order,
+				)
+			);
 			return new WP_Error( 'invalid_order', 'Order not found.' );
 		}
 
@@ -546,7 +552,12 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		// Send the API request to LiqPay.
 		try {
 			$response = $liqpay->api( 'request', $params );
-
+			$this->print_debug_data(
+				'LIQPAY: check_order_status -- response data.',
+				array(
+					'$order' => $response,
+				)
+			);
 			if ( ! empty( $response->status ) ) {
 				// Check if the payment is completed.
 				if ( in_array( $response->status, array( 'success', 'sandbox', 'wait_accept' ), true ) ) {
