@@ -5,221 +5,376 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPML_EXPORT\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2025-05-22 16:10+0300\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Українська\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
 "X-Generator: Poedit 3.5\n"
 
-# // Method title in admin.
-# $this->method_title = __( 'LiqPay', 'wcliqpay' );
-# // Method description in admin.
-msgid "LiqPay"
-msgstr "LiqPay"
+#: includes/analitics-debug/class-analitics-debug.php:261
+msgid "Active plugins:"
+msgstr "Активні плагіни:"
 
-# 'product_rro_id',
-# __( 'Liqpay settings', 'wcliqpay' ),
-# array( $this, 'render_rro_id_metabox' ),
-msgid "Liqpay settings"
-msgstr "Налаштування LiqPay"
+#: includes/analitics-debug/class-analitics-debug.php:61
+msgid ""
+"Below is a detailed view of all data Payment Gateway for LiqPay for "
+"Woocommerce will collect if granted permission. Our will never transmit any "
+"domain names or email addresses, IP addresses, or third-party API keys."
+msgstr ""
+"Нижче наведено детальний огляд усіх даних, які платіжний шлюз LiqPay для "
+"Woocommerce збиратиме, якщо надано дозвіл. Ми ніколи не передаватимемо "
+"жодних доменних імен, адрес електронної пошти, IP-адрес чи ключів API третім "
+"сторонам."
 
-# 'enabled'             => array(
-# 'title'   => __( 'Turn on/Switch off', 'wcliqpay' ),
-# 'type'    => 'checkbox',
-msgid "Turn on/Switch off"
-msgstr "Увімкнути/Вимкнути"
+#: includes/analitics-debug/class-analitics-debug.php:252
+msgid "Current site language:"
+msgstr "Поточна мова:"
 
-# 'type'    => 'checkbox',
-# 'label'   => __( 'Turn on', 'wcliqpay' ),
-# 'default' => 'yes',
-msgid "Turn on"
-msgstr "Увімкнути"
-
-# 'title'               => array(
-# 'title'       => __( 'Heading', 'wcliqpay' ),
-# 'type'        => 'textarea',
-msgid "Heading"
-msgstr "Назва"
-
-# 'type'        => 'textarea',
-# 'description' => __( 'Title that appears on the checkout page', 'wcliqpay' ),
-# 'default'     => __( 'LiqPay' ),
-msgid "Title that appears on the checkout page"
-msgstr "Назва, яка відображається на сторінці оформлення замовлення"
+#: includes/analitics-debug/class-analitics-debug.php:243
+msgid "Current theme:"
+msgstr "Поточна тема:"
 
 # 'description'         => array(
 # 'title'       => __( 'Description', 'wcliqpay' ),
 # 'type'        => 'textarea',
+#: includes/class-wc-gateway-kmnd-liqpay.php:156
 msgid "Description"
 msgstr "Опис"
 
 # 'type'        => 'textarea',
 # 'description' => __( 'Description that appears on the checkout page', 'wcliqpay' ),
 # 'default'     => __( 'Pay using the payment system LiqPay', 'wcliqpay' ),
+#: includes/class-wc-gateway-kmnd-liqpay.php:158
 msgid "Description that appears on the checkout page"
 msgstr "Опис, який відображається на сторінці оформлення замовлення"
 
-# 'description' => __( 'Description that appears on the checkout page', 'wcliqpay' ),
-# 'default'     => __( 'Pay using the payment system LiqPay', 'wcliqpay' ),
-# 'desc_tip'    => true,
-msgid "Pay using the payment system LiqPay"
-msgstr "Оплата за допомогою платіжної системи LiqPay"
+#: includes/class-wc-gateway-kmnd-liqpay.php:226
+msgid "Enable/Disable debug mode"
+msgstr "Увімкнути/Вимкнути налагодження"
 
-# 'public_key'          => array(
-# 'title'       => __( 'Public key', 'wcliqpay' ),
-# 'type'        => 'text',
-msgid "Public key"
-msgstr "Публічний ключ"
-
-# 'type'        => 'text',
-# 'description' => __( 'Public key LiqPay. Required parameter', 'wcliqpay' ),
-# 'desc_tip'    => true,
-msgid "Public key LiqPay. Required parameter"
-msgstr "Відкритий ключ LiqPay. Обов'язковий параметр"
-
-# 'private_key'         => array(
-# 'title'       => __( 'Private key', 'wcliqpay' ),
-# 'type'        => 'text',
-msgid "Private key"
-msgstr "Приватний ключ"
-
-# 'type'        => 'text',
-# 'description' => __( 'Private key LiqPay. Required parameter', 'wcliqpay' ),
-# 'desc_tip'    => true,
-msgid "Private key LiqPay. Required parameter"
-msgstr "Приватний ключ LiqPay. Обов'язковий параметр"
-
-# 'lang'                => array(
-# 'title'       => __( 'Language', 'wcliqpay' ),
-# 'type'        => 'select',
-msgid "Language"
-msgstr "Мова"
-
-# ),
-# 'description' => __( 'Interface language for liqpay pages', 'wcliqpay' ),
-# 'desc_tip'    => true,
-msgid "Interface language for liqpay pages"
-msgstr "Мова інтерфейсу для сторінок liqpay"
-
-# 'icon'                => array(
-# 'title'       => __( 'Logotype', 'wcliqpay' ),
-# 'type'        => 'text',
-msgid "Logotype"
-msgstr "Лого"
+# 'enabled_rro'         => array(
+# 'title'       => __( 'Enable/Disable send RRO', 'wcliqpay' ),
+# 'type'        => 'checkbox',
+#: includes/class-wc-gateway-kmnd-liqpay.php:215
+#: includes/class-wc-gateway-kmnd-liqpay.php:217
+msgid "Enable/Disable send RRO"
+msgstr "Увімкнути/Вимкнути РРО"
 
 # 'default'     => WC_LIQPAY_DIR . 'assets/images/logo_liqpay.svg',
 # 'description' => __( 'Full path to the logo, located on the order page', 'wcliqpay' ),
 # 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:189
 msgid "Full path to the logo, located on the order page"
 msgstr "Повний шлях до логотипу, розташований на сторінці замовлення"
+
+#: includes/class-wc-gateway-kmnd-liqpay.php:232
+msgid "Go to logs"
+msgstr "Перейти до журналів"
+
+# 'title'               => array(
+# 'title'       => __( 'Heading', 'wcliqpay' ),
+# 'type'        => 'textarea',
+#: includes/class-wc-gateway-kmnd-liqpay.php:149
+msgid "Heading"
+msgstr "Назва"
+
+#. Author URI of the plugin
+msgid "https://komanda.dev/"
+msgstr ""
+
+msgid "If left blank, the product ID will be used. - %s"
+msgstr ""
+"Якщо залишити поле порожнім, буде використано ідентифікатор продукту. - %s"
+
+#: includes/analitics-debug/class-analitics-debug.php:270
+msgid "Information from the \"Site Health\""
+msgstr "Інформація з розділу \"Здоров'я сайту\""
+
+# ),
+# 'description' => __( 'Interface language for liqpay pages', 'wcliqpay' ),
+# 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:182
+msgid "Interface language for liqpay pages"
+msgstr "Мова інтерфейсу для сторінок liqpay"
+
+#. Author of the plugin
+msgid "komanda.dev"
+msgstr ""
+
+# 'lang'                => array(
+# 'title'       => __( 'Language', 'wcliqpay' ),
+# 'type'        => 'select',
+#: includes/class-wc-gateway-kmnd-liqpay.php:175
+msgid "Language"
+msgstr "Мова"
+
+# // Method title in admin.
+# $this->method_title = __( 'LiqPay', 'wcliqpay' );
+# // Method description in admin.
+#: includes/class-wc-gateway-kmnd-liqpay.php:28
+msgid "LiqPay"
+msgstr "LiqPay"
+
+# 'description' => $this->settings['description'],
+# 'not_edit'    => __( 'Liqpay editing is not available in this context', 'wcliqpay' ),
+# )
+#: includes/support-block-liqpay/class-payment-method-type-liqpay.php:42
+msgid "Liqpay editing is not available in this context"
+msgstr "У цьому контексті редагування Liqpay недоступне"
+
+# wp_nonce_field( 'product_rro_id_meta_box_nonce', 'product_rro_id_meta_box_nonce' );
+# echo '<label for="product_rro_id">' . esc_html__( 'Liqpay product ID for RRO', 'wcliqpay' ) . '</label>';
+# echo '<input type="text" id="product_rro_id" name="product_rro_id" value="' . esc_attr( $product_rro_id ) . '" style="width: 100%;margin-top: 5px;" />';
+#: includes/class-wc-gateway-kmnd-liqpay.php:109
+msgid "Liqpay product ID for RRO"
+msgstr "ID продукту для РРО LiqPay"
+
+# 'product_rro_id',
+# __( 'Liqpay settings', 'wcliqpay' ),
+# array( $this, 'render_rro_id_metabox' ),
+#: includes/class-wc-gateway-kmnd-liqpay.php:92
+msgid "Liqpay settings"
+msgstr "Налаштування LiqPay"
+
+# 'icon'                => array(
+# 'title'       => __( 'Logotype', 'wcliqpay' ),
+# 'type'        => 'text',
+#: includes/class-wc-gateway-kmnd-liqpay.php:186
+msgid "Logotype"
+msgstr "Лого"
+
+# /* translators: %s - URL to Liqpay services page */
+# __( 'More details at the link %s', 'wcliqpay' ),
+# '<a href="https://www.liqpay.ua/products_services/services_rro">https://www.liqpay.ua/products_services/services_rro</a>'
+#. %s - URL to Liqpay services page
+#: includes/class-wc-gateway-kmnd-liqpay.php:220
+#, php-format
+msgid "More details at the link %s"
+msgstr "Більше деталей за посиланням %s"
+
+#. button text for data collection opt-in
+#: includes/analitics-debug/class-analitics-debug.php:73
+msgid "No, thanks"
+msgstr "Ні, дякую"
+
+#. %s - Link to WooCommerce logs page
+#: includes/class-wc-gateway-kmnd-liqpay.php:231
+#, php-format
+msgid "Open WooCommerce logs page: %s"
+msgstr "Відкрити сторінку журналів WooCommerce: %s"
 
 # 'status'              => array(
 # 'title'       => __( 'Order status', 'wcliqpay' ),
 # 'type'        => 'select',
+#: includes/class-wc-gateway-kmnd-liqpay.php:193
 msgid "Order status"
 msgstr "Статус замовлення"
 
 # 'options'     => $allow_statuses,
 # 'description' => __( 'Order status after successful payment', 'wcliqpay' ),
 # 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:197
 msgid "Order status after successful payment"
 msgstr "Статус замовлення після успішної оплати"
 
-# 'order_description'   => array(
-# 'title'       => __( 'Purpose of payment', 'wcliqpay' ),
-# 'type'        => 'text',
-msgid "Purpose of payment"
-msgstr "Призначення платежу"
-
-# 'default'     => '',
-# 'description' => __( 'Payment for order №[order_number]', 'wcliqpay' ),
+# 'description' => __( 'Description that appears on the checkout page', 'wcliqpay' ),
+# 'default'     => __( 'Pay using the payment system LiqPay', 'wcliqpay' ),
 # 'desc_tip'    => true,
-msgid "Payment for order №[order_number]"
-msgstr "Оплата замовлення №[order_number]"
-
-# 'redirect_page_error' => array(
-# 'title'       => __( 'URL error Payment page', 'wcliqpay' ),
-# 'type'        => 'text',
-msgid "URL error Payment page"
-msgstr "URL при помилці оплати"
-
-# 'default'     => '',
-# 'description' => __( 'URL page to go to after gateway LiqPay', 'wcliqpay' ),
-# 'desc_tip'    => true,
-msgid "URL page to go to after gateway LiqPay"
-msgstr "URL-сторінка для переходу після шлюзу LiqPay"
-
-# 'enabled_rro'         => array(
-# 'title'       => __( 'Enable/Disable send RRO', 'wcliqpay' ),
-# 'type'        => 'checkbox',
-msgid "Enable/Disable send RRO"
-msgstr "Увімкнути/Вимкнути РРО"
-
-# /* translators: %s - URL to Liqpay services page */
-# __( 'More details at the link %s', 'wcliqpay' ),
-# '<a href="https://www.liqpay.ua/products_services/services_rro">https://www.liqpay.ua/products_services/services_rro</a>'
-msgid "More details at the link %s"
-msgstr "Більше деталей за посиланням %s"
-
-# // Mark the order as "processing" or "completed" based on your workflow.
-# $order->update_status( $this->get_option( 'status' ), __( 'Payment successful via LiqPay.', 'wcliqpay' ) );
-# $order->payment_complete();
-msgid "Payment successful via LiqPay."
-msgstr "Оплата успішна через LiqPay."
-
-# 'amount'         => $order->get_total(),
-# 'reason'         => __( 'Payment refunded via Liqpay', 'wcliqpay' ),
-# 'order_id'       => $order->get_id(),
-msgid "Payment refunded via Liqpay"
-msgstr "Платіж повернуто через LiqPay"
-
-# // If the status is not successful, mark the order as failed.
-# $order->update_status( 'failed', __( 'Payment failed via LiqPay.', 'wcliqpay' ) );
-# }
-msgid "Payment failed via LiqPay."
-msgstr "Не вдалося здійснити платіж через LiqPay."
-
-# // Payment failed or error occurred.
-# wc_add_notice( __( 'Payment verification failed. Please contact us for assistance.', 'wcliqpay' ), 'error' );
-# $redirect_url = $this->get_option( 'redirect_page_error' ) ? $this->get_option( 'redirect_page_error' ) : wc_get_cart_url();
-msgid "Payment verification failed. Please contact us for assistance."
-msgstr "Помилка підтвердження платежу. Будь ласка, зв'яжіться з нами для отримання допомоги."
+#: includes/class-wc-gateway-kmnd-liqpay.php:30
+#: includes/class-wc-gateway-kmnd-liqpay.php:159
+msgid "Pay using the payment system LiqPay"
+msgstr "Оплата за допомогою платіжної системи LiqPay"
 
 # // Update WooCommerce order status to the status saved in the 'status' field.
 # $order->update_status( $this->get_option( 'status' ), __( 'Payment confirmed via LiqPay API.', 'wcliqpay' ) );
 # $order->payment_complete();
+#: includes/class-wc-gateway-kmnd-liqpay.php:565
 msgid "Payment confirmed via LiqPay API."
 msgstr "Оплата підтверджена через LiqPay API."
 
 # // Payment not successful.
 # $order->update_status( 'failed', __( 'Payment failed via LiqPay API.', 'wcliqpay' ) );
 # return new WP_Error( 'payment_failed', 'Payment not successful.' );
+#: includes/class-wc-gateway-kmnd-liqpay.php:570
 msgid "Payment failed via LiqPay API."
 msgstr "Не вдалося здійснити платіж через LiqPay API."
 
-# wp_nonce_field( 'product_rro_id_meta_box_nonce', 'product_rro_id_meta_box_nonce' );
-# echo '<label for="product_rro_id">' . esc_html__( 'Liqpay product ID for RRO', 'wcliqpay' ) . '</label>';
-# echo '<input type="text" id="product_rro_id" name="product_rro_id" value="' . esc_attr( $product_rro_id ) . '" style="width: 100%;margin-top: 5px;" />';
-msgid "Liqpay product ID for RRO"
-msgstr "ID продукту для РРО LiqPay"
+# // If the status is not successful, mark the order as failed.
+# $order->update_status( 'failed', __( 'Payment failed via LiqPay.', 'wcliqpay' ) );
+# }
+#: includes/class-wc-gateway-kmnd-liqpay.php:437
+msgid "Payment failed via LiqPay."
+msgstr "Не вдалося здійснити платіж через LiqPay."
 
-# 'description' => $this->settings['description'],
-# 'not_edit'    => __( 'Liqpay editing is not available in this context', 'wcliqpay' ),
-# )
-msgid "Liqpay editing is not available in this context"
-msgstr "У цьому контексті редагування Liqpay недоступне"
+# 'default'     => '',
+# 'description' => __( 'Payment for order №[order_number]', 'wcliqpay' ),
+# 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:203
+#: includes/class-wc-gateway-kmnd-liqpay.php:204
+msgid "Payment for order №[order_number]"
+msgstr "Оплата замовлення №[order_number]"
 
-msgid "Enable/Disable debug mode"
-msgstr "Увімкнути/Вимкнути налагодження"
+#. Name of the plugin
+msgid "Payment Gateway for LiqPay for Woocommerce"
+msgstr ""
 
-msgid "Open WooCommerce logs page: %s"
-msgstr "Відкрити сторінку журналів WooCommerce: %s"
+# 'amount'         => $order->get_total(),
+# 'reason'         => __( 'Payment refunded via Liqpay', 'wcliqpay' ),
+# 'order_id'       => $order->get_id(),
+#: includes/class-wc-gateway-kmnd-liqpay.php:421
+#: includes/class-wc-gateway-kmnd-liqpay.php:426
+msgid "Payment refunded via Liqpay"
+msgstr "Платіж повернуто через LiqPay"
 
-msgid "Go to logs"
-msgstr "Перейти до журналів"
+# // Mark the order as "processing" or "completed" based on your workflow.
+# $order->update_status( $this->get_option( 'status' ), __( 'Payment successful via LiqPay.', 'wcliqpay' ) );
+# $order->payment_complete();
+#: includes/class-wc-gateway-kmnd-liqpay.php:407
+msgid "Payment successful via LiqPay."
+msgstr "Оплата успішна через LiqPay."
 
+# // Payment failed or error occurred.
+# wc_add_notice( __( 'Payment verification failed. Please contact us for assistance.', 'wcliqpay' ), 'error' );
+# $redirect_url = $this->get_option( 'redirect_page_error' ) ? $this->get_option( 'redirect_page_error' ) : wc_get_cart_url();
+#: includes/class-wc-gateway-kmnd-liqpay.php:504
+msgid "Payment verification failed. Please contact us for assistance."
+msgstr ""
+"Помилка підтвердження платежу. Будь ласка, зв'яжіться з нами для отримання "
+"допомоги."
+
+#: includes/analitics-debug/class-analitics-debug.php:216
+msgid "PHP version number:"
+msgstr "Версія PHP:"
+
+#. Description of the plugin
+msgid ""
+"Plugin for paying for products through the LiqPay service. Works in "
+"conjunction with the Woocommerce plugin"
+msgstr ""
+"Плагін для оплати товарів через сервіс LiqPay. Працює спільно з плагіном "
+"Woocommerce"
+
+#: includes/analitics-debug/class-analitics-debug.php:264
+msgid "Plugin names of all active plugins"
+msgstr "Назви всіх активних плагінів"
+
+# 'private_key'         => array(
+# 'title'       => __( 'Private key', 'wcliqpay' ),
+# 'type'        => 'text',
+#: includes/class-wc-gateway-kmnd-liqpay.php:169
+msgid "Private key"
+msgstr "Приватний ключ"
+
+# 'type'        => 'text',
+# 'description' => __( 'Private key LiqPay. Required parameter', 'wcliqpay' ),
+# 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:171
+msgid "Private key LiqPay. Required parameter"
+msgstr "Приватний ключ LiqPay. Обов'язковий параметр"
+
+# 'public_key'          => array(
+# 'title'       => __( 'Public key', 'wcliqpay' ),
+# 'type'        => 'text',
+#: includes/class-wc-gateway-kmnd-liqpay.php:163
+msgid "Public key"
+msgstr "Публічний ключ"
+
+# 'type'        => 'text',
+# 'description' => __( 'Public key LiqPay. Required parameter', 'wcliqpay' ),
+# 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:165
+msgid "Public key LiqPay. Required parameter"
+msgstr "Відкритий ключ LiqPay. Обов'язковий параметр"
+
+# 'order_description'   => array(
+# 'title'       => __( 'Purpose of payment', 'wcliqpay' ),
+# 'type'        => 'text',
+#: includes/class-wc-gateway-kmnd-liqpay.php:201
+msgid "Purpose of payment"
+msgstr "Призначення платежу"
+
+#: includes/analitics-debug/class-analitics-debug.php:207
+msgid "Server type:"
+msgstr "Тип сервера:"
+
+#: wc-liqpay.php:103
 msgid "Settings"
 msgstr "Налаштування"
+
+#: includes/analitics-debug/class-analitics-debug.php:273
+msgid "Technical information about the WordPress system and settings"
+msgstr "Технічна інформація про систему WordPress та її налаштування"
+
+#: includes/analitics-debug/class-analitics-debug.php:50
+msgid ""
+"This will help us improve the LiqPay payment gateway plugin for Woocommerce "
+"for you in the future."
+msgstr ""
+"Це допоможе нам покращити плагін платіжного шлюзу LiqPay для Woocommerce у "
+"майбутньому."
+
+# 'type'        => 'textarea',
+# 'description' => __( 'Title that appears on the checkout page', 'wcliqpay' ),
+# 'default'     => __( 'LiqPay' ),
+#: includes/class-wc-gateway-kmnd-liqpay.php:151
+msgid "Title that appears on the checkout page"
+msgstr "Назва, яка відображається на сторінці оформлення замовлення"
+
+# 'type'    => 'checkbox',
+# 'label'   => __( 'Turn on', 'wcliqpay' ),
+# 'default' => 'yes',
+#: includes/class-wc-gateway-kmnd-liqpay.php:145
+msgid "Turn on"
+msgstr "Увімкнути"
+
+# 'enabled'             => array(
+# 'title'   => __( 'Turn on/Switch off', 'wcliqpay' ),
+# 'type'    => 'checkbox',
+#: includes/class-wc-gateway-kmnd-liqpay.php:143
+msgid "Turn on/Switch off"
+msgstr "Увімкнути/Вимкнути"
+
+# 'redirect_page_error' => array(
+# 'title'       => __( 'URL error Payment page', 'wcliqpay' ),
+# 'type'        => 'text',
+#: includes/class-wc-gateway-kmnd-liqpay.php:208
+msgid "URL error Payment page"
+msgstr "URL при помилці оплати"
+
+# 'default'     => '',
+# 'description' => __( 'URL page to go to after gateway LiqPay', 'wcliqpay' ),
+# 'desc_tip'    => true,
+#: includes/class-wc-gateway-kmnd-liqpay.php:211
+msgid "URL page to go to after gateway LiqPay"
+msgstr "URL-сторінка для переходу після шлюзу LiqPay"
+
+#. button text, click will expand data collection preview
+#: includes/analitics-debug/class-analitics-debug.php:56
+msgid "What info will we collect?"
+msgstr "Яку інформацію ми збиратимемо?"
+
+#: includes/analitics-debug/class-analitics-debug.php:234
+msgid "WordPress multisite:"
+msgstr "Мультисайт WordPress:"
+
+#: includes/analitics-debug/class-analitics-debug.php:225
+msgid "WordPress version number:"
+msgstr "Номер версії WordPress:"
+
+#: includes/analitics-debug/class-analitics-debug.php:49
+msgid ""
+"Would you allow Payment Gateway for LiqPay for Woocommerce to collect non-"
+"sensitive diagnostic data from this website?"
+msgstr ""
+"Чи дозволите ви платіжному шлюзу LiqPay для Woocommerce збирати діагностичні "
+"дані з цього веб-сайту?"
+
+#. button text for data collection opt-in
+#: includes/analitics-debug/class-analitics-debug.php:70
+msgid "Yes, allow"
+msgstr "Так, дозволити"

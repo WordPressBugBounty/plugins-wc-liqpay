@@ -77,8 +77,47 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 
 		if ( isset( $_POST['product_rro_id'] ) ) {
 			// phpcs:ignore
-			$result = update_post_meta( $post_id, 'product_rro_id', $_POST['product_rro_id'] );
+			update_post_meta( $post_id, 'product_rro_id', $_POST['product_rro_id'] );
 		}
+	}
+
+	/**
+	 * Dave variation metabox.
+	 *
+	 * @param (int) $variation_id - Id product.
+	 * @param (int) $i - Index variation.
+	 * @return void
+	 */
+	public static function save_rro_id_metabox_variable( $variation_id, $i ) {
+		// phpcs:ignore
+		if ( isset( $_POST['product_rro_id'][$i] ) ) {
+			// phpcs:ignore
+			update_post_meta( $variation_id, 'product_rro_id', sanitize_text_field( $_POST['product_rro_id'][$i] ) );
+		}
+	}
+
+	/**
+	 * Add metabox rro id field to the product page variable.
+	 *
+	 * @param int     $loop           Position in the loop.
+	 * @param array   $variation_data Variation data.
+	 * @param WP_Post $variation      Post data.
+	 * @return void
+	 */
+	public static function add_rro_id_metabox_variable( $loop, $variation_data, $variation ) {
+		$custom_value = get_post_meta( $variation->ID, 'product_rro_id', true );
+		woocommerce_wp_text_input(
+			array(
+				'id'            => "product_rro_id{$loop}",
+				'name'          => "product_rro_id[{$loop}]",
+				'value'         => $custom_value,
+				'label'         => esc_html__( 'Liqpay product ID for RRO', 'wcliqpay' ),
+				'wrapper_class' => 'form-row form-row-first',
+				'desc_tip'      => true,
+				/* translators: %s: Product variation ID */
+				'description'   => sprintf( esc_html__( 'If left blank, the product ID will be used. - %s', 'wcliqpay' ), $variation->ID ),
+			)
+		);
 	}
 
 	/**
@@ -267,18 +306,29 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 				$product_rro_id_meta = get_post_meta( $product->get_id(), 'product_rro_id', true );
 
 				if ( $product_rro_id_meta ) {
-					$rro_product_id = $product_rro_id_meta;
+					$rro_product_id        = $product_rro_id_meta;
+					$source_rro_product_id = 'meta';
 				} else {
-					$rro_product_id = $product->get_id();
+					$rro_product_id        = $product->get_id();
+					$source_rro_product_id = 'original_id_product';
 				}
 
-				$rro_info['items'][] = array(
+				$item_data           = array(
 					'amount' => $item->get_quantity(),
 					'price'  => (float) $product->get_price(),
 					'cost'   => (float) $item->get_total(),
 					'id'     => (string) $rro_product_id,
 				);
+				$rro_info['items'][] = $item_data;
 
+				if ( 'yes' === $this->get_option( 'debug' ) ) {
+					$rro_info_debug['items'][] = array_merge(
+						$item_data,
+						array(
+							'source_rro_product_id' => $source_rro_product_id,
+						)
+					);
+				}
 			}
 		}
 
@@ -305,10 +355,19 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 
 		if ( $enabled_rro ) {
 			$params['rro_info'] = $rro_info;
+			if ( 'yes' === $this->get_option( 'debug' ) ) {
+				$this->print_debug_data(
+					'LIQPAY: rro id source data:',
+					array(
+						'order_id'       => $order->get_id(),
+						'rro_info_debug' => $rro_info_debug,
+					)
+				);
+			}
 		}
 
 		// Filter "wc_liqpay_request_filter" to query array before sending data to liqpay.
-		$params = apply_filters( 'wc_liqpay_request_filter', $params, $order);
+		$params = apply_filters( 'wc_liqpay_request_filter', $params, $order );
 
 		if ( 'yes' === $this->get_option( 'debug' ) ) {
 			$this->print_debug_data( 'LIQPAY: Init data:', $params );

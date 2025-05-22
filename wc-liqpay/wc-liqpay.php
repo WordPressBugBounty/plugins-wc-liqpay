@@ -4,7 +4,7 @@
  * Plugin Name: Payment Gateway for LiqPay for Woocommerce
  * Plugin URI:
  * Description: Plugin for paying for products through the LiqPay service. Works in conjunction with the Woocommerce plugin
- * Version: 2.7
+ * Version: 2.8.1
  * Requires at least: 5.7.2
  * Requires PHP: 7.4
  * Author: komanda.dev
@@ -40,6 +40,7 @@ function init_liqpay_gateway_plugin() {
 	add_action( 'muplugins_loaded', 'load_liqpay_mu_textdomain' );
 
 	define( 'WC_LIQPAY_DIR', plugin_dir_url( __FILE__ ) );
+	define( 'WC_LIQPAY_PATH', plugin_dir_path( __FILE__ ) );
 
 	// Include the necessary files.
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-liqpay.php';
@@ -47,11 +48,15 @@ function init_liqpay_gateway_plugin() {
 
 	require_once plugin_dir_path( __FILE__ ) . 'includes/support-block-liqpay/class-support-block-liqpay.php';
 	require_once plugin_dir_path( __FILE__ ) . 'includes/support-block-liqpay/class-payment-method-type-liqpay.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/analitics-debug/class-analitics-debug.php';
 
 	$options = get_option( 'woocommerce_liqpay_settings' );
 	if ( isset( $options['enabled_rro'] ) && 'yes' === $options['enabled_rro'] ) {
 		add_action( 'add_meta_boxes', array( 'WC_Gateway_Kmnd_Liqpay', 'add_rro_id_metabox' ) );
 		add_action( 'save_post_product', array( 'WC_Gateway_Kmnd_Liqpay', 'save_rro_id_metabox' ) );
+
+		add_action( 'woocommerce_product_after_variable_attributes', array( 'WC_Gateway_Kmnd_Liqpay', 'add_rro_id_metabox_variable' ), 10, 3 );
+		add_action( 'woocommerce_save_product_variation', array( 'WC_Gateway_Kmnd_Liqpay', 'save_rro_id_metabox_variable' ), 10, 2 );
 	}
 }
 

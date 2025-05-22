@@ -39,7 +39,7 @@ final class Payment_Method_Type_Liqpay extends AbstractPaymentMethodType {
 			array(
 				'title'       => $this->get_setting( 'title' ),
 				'description' => $this->get_setting( 'description' ),
-				'not_edit'    => __( 'Liqpay editing is not available in this context', 'wcliqpay' ),
+				'not_edit'    => __( 'Pay using the payment system LiqPay', 'wcliqpay' ),
 			)
 		);
 	}

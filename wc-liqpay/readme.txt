@@ -4,7 +4,7 @@ Tags: LiqPay, liqpay, payment, gateway, Woocommerce,
 Requires at least: 5.7.2
 Tested up to: 6.8.1
 Requires PHP: 7.4
-Stable tag: 2.7
+Stable tag: 2.8.1
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -52,10 +52,11 @@ After installing and activating the plugin, go to the admin panel in the left me
 
 == Screenshots ==
 
-1. Screenshot of woocommerce payment page
-2. Screenshot of our plugin settings
-3. Screenshot of our plugin settings
-
+1. Woocommerce payment methods settings page
+2. Plugin settings page
+3. Payment methods in block themes
+4. Single product RRO settings
+5. Variable product RRO settings
 
 == Changelog ==
 = 1.0 = 
@@ -114,6 +115,10 @@ Added order object to filter "wc_liqpay_request_filter"
 Added a short description of the RRO field
 = 2.7 =
 Update Wordpress 6.8.1
+= 2.8 =
+Sending technical information with consent
+RRO for variable products
+Updated screenshots
 
 == Upgrade Notice ==
 
@@ -157,6 +162,10 @@ Added order object to filter "wc_liqpay_request_filter"
 Added a short description of the RRO field
 = 2.7 =
 Update Wordpress 6.8.1
+= 2.8 =
+Sending technical information with consent
+RRO for variable products
+Updated screenshots
 
 == Translations ==
 
