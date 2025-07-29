@@ -45,7 +45,7 @@ class Analitics_Debug {
 
 				$analytics_notice = sprintf(
 				// Opening <p> provided by wcliqpay_notice_html().
-					'<strong>%1$s</strong><br>%2$s</p>',
+					'<br><strong>%1$s</strong><br>%2$s</p>',
 					__( 'Would you allow Payment Gateway for LiqPay for Woocommerce to collect non-sensitive diagnostic data from this website?', 'wcliqpay' ),
 					__( 'This will help us improve the LiqPay payment gateway plugin for Woocommerce for you in the future.', 'wcliqpay' )
 				);
@@ -79,7 +79,6 @@ class Analitics_Debug {
 					true,
 					'analitics-debug'
 				);
-				WP_Admin_Notice::init();
 			}
 		);
 		add_action( 'admin_post_wcliqpay_analytics_optin', array( __CLASS__, 'wcliqpay_analytics_optin' ) );
