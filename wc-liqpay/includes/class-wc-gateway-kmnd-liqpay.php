@@ -213,10 +213,11 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 			'lang'                => array(
 				'title'       => __( 'Language', 'wcliqpay' ),
 				'type'        => 'select',
-				'default'     => 'uk',
+				'default'     => 'auto',
 				'options'     => array(
-					'uk' => __( 'uk' ),
-					'en' => __( 'en' ),
+					'auto' => __( 'auto' ),
+					'uk'   => __( 'uk' ),
+					'en'   => __( 'en' ),
 				),
 				'description' => __( 'Interface language for liqpay pages', 'wcliqpay' ),
 				'desc_tip'    => true,
@@ -317,7 +318,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 					'amount' => $item->get_quantity(),
 					'price'  => (float) $product->get_price(),
 					'cost'   => (float) $item->get_total(),
-					'id'     => (string) $rro_product_id,
+					'id'     => (int) $rro_product_id,
 				);
 				$rro_info['items'][] = $item_data;
 
@@ -333,6 +334,19 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		}
 
 		$description = str_replace( '[order_number]', $order->get_id(), $this->get_option( 'order_description' ) );
+
+		$language_option = $this->get_option( 'lang' );
+		if ( 'auto' === $language_option ) {
+			$locale = get_locale();
+			if ( strpos( $locale, 'uk' ) === 0 || strpos( $locale, 'ru' ) === 0 ) {
+				$lang = 'uk';
+			} else {
+				$lang = 'en';
+			}
+		} else {
+			$lang = $language_option;
+		}
+
 		// Set the required parameters for the payment.
 		$params = array(
 			'version'     => '3',
@@ -350,7 +364,7 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 				home_url( '/' )
 			),
 			'server_url'  => WC()->api_request_url( strtolower( get_class( $this ) ) ),
-			'language'    => $this->get_option( 'lang' ),
+			'language'    => $lang,
 		);
 
 		if ( $enabled_rro ) {
@@ -389,6 +403,9 @@ class WC_Gateway_Kmnd_Liqpay extends WC_Payment_Gateway {
 		if ( 'yes' === $this->get_option( 'debug' ) ) {
 			$this->print_debug_data( 'LIQPAY: handle_callback -- _POST data:', $_POST );
 		}
+
+		do_action( 'handle_callback', $_POST );
+
 		// phpcs:disable
 		// Get data and signature from LiqPay's callback.
 		$data      = isset( $_POST['data'] ) ? $_POST['data'] : null;
